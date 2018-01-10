@@ -18,8 +18,17 @@ matrix:
 
 script:
 - make style test
-# Build binaries
 - make promu
 - promu crossbuild
 - promu crossbuild tarballs
 - promu checksum .tarballs
+
+deploy:
+  provider: releases
+  api_key:
+    secure: ZNII9+JLqPHFXwdcr/ujqbSw/fFvFTBlpFAMLWQdTdFhduN8nOV5lE3iuruQ2Y/SwmQrGavjELXx11igAjg04sspzTQZP7x7oBmEo/EfprjGPzKObHRmcefO4bKNOcFGSARWRWvHoyDRvoUS0pj9MHQVL3wfWbJs8lJ0++Pn6gtUckuBfUgxcRl/eu2nxAN/HogCVQuavzKnuRzOivghO0QeOW9CYJRCZ125MC886IdGVHF5ziMpE3YV2eqcCrXsjJnDpP0Ymaaxxc+6I1rwrmQW+/ENBsAtbYPgySKw4lTFOQDy83VmEBFbEFyyxo7sWUuIDN+Xxz7W44EAc6qo8fHi75L62qLnfy/cOlsR/iZlbrubEJUbTKbu7n9iNfWutJ6smwlzQpdex2Rdg9BpW2XUjbBXMvKpzMYLxj2cTWji3we7hwTdW3xvb4ZM7oeIWMuQa2pUicdwUmU5i8S346U7kaU1qZfKbqZz1J8IB4SAnQxiIxlqvHZQ73oNhciI2lFUJuULcEBN0J+fOXck+6/fpNUBhdAroGYAqKR9EvyZCWkOb1wmIROCdCgweHC6v3SigCfVxDgiFg2qKB4qzXlm3v7pKKkdcQZNPfEMpolhn3LbieCsBBR0G5lzzrG5hR1P6u307s/Cm+Wt3CwNTWCmBUQWc2R09CukZaQ5jxo=
+  file_glob: true
+  file: .tarballs/*
+  skip_cleanup: true
+  on:
+tags: true
