@@ -19,4 +19,7 @@ matrix:
 script:
 - make style test
 # Build binaries
-- make
+- make promu
+- promu crossbuild
+- promu crossbuild tarballs
+- promu checksum .tarballs
